@@ -12,7 +12,6 @@ class Assignment:
         return (self.grade / 100) * self.weight
 
 def get_valid_number(prompt, is_weight=False):
-
     while True:
         user_input = input(prompt)
         try:
@@ -36,6 +35,22 @@ def main():
     print("------------------------------------------")
     print("   ALU GRADE GENERATOR - STUDENT TOOL     ")
     print("------------------------------------------")
+
+    print("\n--- Student Details ---")
+    
+    while True:
+        student_name = input("Enter Student Name: ").strip()
+        if student_name:
+            break
+        print("Error: Name cannot be empty.")
+
+    while True:
+        student_id = input("Enter Student ID (3 digits, e.g., 123): ").strip()
+        # Check if it is a number AND has exactly length of 3
+        if student_id.isdigit() and len(student_id) == 3:
+            break
+        print("Error: Student ID must be exactly 3 numeric digits.")
+
 
     while True:
         print("\n--- New Assignment ---")
@@ -64,7 +79,7 @@ def main():
     total_fa_weight = 0
     total_sa_weight = 0
 
-    csv_data = [['Assignment', 'Category', 'Grade', 'Weight']]
+    csv_data = [['Student Name', 'Student ID', 'Assignment', 'Category', 'Grade', 'Weight']]
 
     for task in assignments:
         weighted = task.calculate_weighted_grade()
@@ -76,7 +91,7 @@ def main():
             total_sa_score += weighted
             total_sa_weight += task.weight
             
-        csv_data.append([task.name, task.category, task.grade, task.weight])
+        csv_data.append([student_name, student_id, task.name, task.category, task.grade, task.weight])
 
     final_grade = total_fa_score + total_sa_score
     gpa = (final_grade / 100) * 5.0
@@ -92,6 +107,8 @@ def main():
     print("\n" + "="*50)
     print("{:^50}".format('ACADEMIC PERFORMANCE SUMMARY'))
     print("="*50)
+    print("Student: {} (ID: {})".format(student_name, student_id))
+    print("-" * 50)
     
     print("{:<20} | {:<20}".format('Category', 'Score / Weight'))
     print("-" * 50)

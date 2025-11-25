@@ -14,13 +14,13 @@ Breakdown:
 
 **Python Application**
 
-1.Interactive Input: Accepts assignment Name, Category (FA/SA), Grade, and Weight.
+1.Interactive Input: Accepts student name,ID(3 Digits), assignment Name, Category (FA/SA), Grade, and Weight.
 2.Validation: Ensures grades are 0-100, weights are positive, and categories are correct.
 3.Calculation:
   *Calculates weighted averages.
   *Computes GPA based on the 5.0 scale.
   *Determines Pass/Fail status (Requires >= 50% in both FA and SA categories).
-4.Export: Saves all data to `grades.csv`.
+4.Export: Saves all data to `grades.csv`with the student's name and ID included in every row.
 
 **Bash Organizer**
 
